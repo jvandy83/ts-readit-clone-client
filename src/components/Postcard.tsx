@@ -20,7 +20,7 @@ interface PostcardProps {
 	post: Post;
 }
 
-export default function PostCard({ post }) {
+export default function PostCard({ post }: PostcardProps) {
 	return (
 		<div key={post.identifier} className='flex mb-4 bg-white rounded'>
 			{/* vote section */}
