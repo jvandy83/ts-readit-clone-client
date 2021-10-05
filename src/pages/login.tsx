@@ -10,24 +10,37 @@ import { useRouter } from 'next/router';
 
 import { InputGroup } from '../components/inputGroup';
 
+import { useAuthDispatch, useAuthState } from '../context/auth';
+
 export default function Login() {
+	const dispatch = useAuthDispatch();
+	const { authenticated } = useAuthState();
+
+	const router = useRouter();
+
 	const [password, setPassword] = useState('');
 	const [username, setUsername] = useState('');
 	const [agreement, setAgreement] = useState(false);
 	const [errors, setErrors] = useState<any>({});
 
-	const router = useRouter();
+	if (authenticated) {
+		router.push('/');
+	}
 
 	const submitForm = async (e: FormEvent) => {
 		e.preventDefault();
 
 		try {
-			await axios.post('/auth/login', {
+			const res = await axios.post('/auth/login', {
 				password,
 				username,
 			});
+
+			dispatch('LOGIN', res.data);
+			console.log(res);
 			router.push('/');
 		} catch (err) {
+			console.log(err);
 			setErrors(err.response.data);
 		}
 	};

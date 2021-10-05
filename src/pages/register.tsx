@@ -10,6 +10,8 @@ import { useRouter } from 'next/router';
 
 import { InputGroup } from '../components/inputGroup';
 
+import { useAuthState } from '../context/auth';
+
 export default function Register() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -18,6 +20,9 @@ export default function Register() {
 	const [errors, setErrors] = useState<any>({});
 
 	const router = useRouter();
+
+	const { authenticated } = useAuthState();
+	if (authenticated) router.push('/');
 
 	const submitForm = async (e: FormEvent) => {
 		e.preventDefault();
