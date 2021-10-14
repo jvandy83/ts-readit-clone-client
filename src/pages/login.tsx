@@ -37,8 +37,7 @@ export default function Login() {
 			});
 
 			dispatch('LOGIN', res.data);
-			console.log(res);
-			router.push('/');
+			router.back();
 		} catch (err) {
 			console.log(err);
 			setErrors(err.response.data);

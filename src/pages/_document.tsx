@@ -19,8 +19,8 @@ class MyDocument extends Document {
 					/>
 					<link
 						rel='stylesheet'
-						href='https://i.icomoon.io/public/temp/fcf2973f2e/UntitledProject/style.css'
-					></link>
+						href='https://i.icomoon.io/public/temp/1b1123d321/UntitledProject/style.css'
+					/>
 				</Head>
 				<body className='font-body' style={{ backgroundColor: '#DAE0E6' }}>
 					<Main />
