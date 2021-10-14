@@ -2,7 +2,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import Postcard from '../components/Postcard';
-import Sidebar from '../components/Sidebar';
 
 import dayjs from 'dayjs';
 

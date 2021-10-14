@@ -11,13 +11,7 @@ import classNames from 'classnames';
 
 import axios from 'axios';
 
-const ActionButton = ({ children }) => {
-	return (
-		<div className='px-1 py-1 mr-1 text-xs text-gray-400 rounded cursor-pointer hover:bg-gray-200'>
-			{children}
-		</div>
-	);
-};
+import ActionButton from '../components/ActionButton';
 
 interface PostcardProps {
 	post: Post;
@@ -38,15 +32,13 @@ export default function PostCard({
 		username,
 	},
 }: PostcardProps) {
-	const vote = async (value) => {
+	const vote = async (value: number) => {
 		try {
 			const res = await axios.post('/misc/vote', {
 				identifier,
 				slug,
 				value,
 			});
-
-			console.log(res.data);
 		} catch (err) {
 			console.log(err);
 		}
