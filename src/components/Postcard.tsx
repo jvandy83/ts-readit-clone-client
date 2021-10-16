@@ -2,6 +2,8 @@ import { Post } from '../types';
 
 import dayjs from 'dayjs';
 
+import { mutate } from 'swr';
+
 import Link from 'next/link';
 
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -39,6 +41,7 @@ export default function PostCard({
 				slug,
 				value,
 			});
+			mutate('/posts');
 		} catch (err) {
 			console.log(err);
 		}

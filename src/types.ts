@@ -34,3 +34,14 @@ export interface Sub {
 	bannerUrn: string;
 	postCount?: number;
 }
+
+export interface Comment {
+	identifier: string;
+	body: string;
+	username: string;
+	createdAt: string;
+	updatedAt: string;
+	// Virtuals
+	voteScore?: number;
+	userVote?: number;
+}

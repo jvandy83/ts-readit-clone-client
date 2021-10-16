@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 import { createRef, useState, useEffect, ChangeEvent } from 'react';
 
-import useSWR from 'swr';
+import useSWR, { mutate } from 'swr';
 import PostCard from '../../components/Postcard';
 import Sidebar from '../../components/Sidebar';
 
@@ -27,12 +27,7 @@ export default function SubPage() {
 
 	const subName = router.query.sub;
 
-	const { data: sub, error } = useSWR<Sub>(
-		subName ? `/subs/${subName}` : null,
-		{
-			refreshInterval: 500,
-		},
-	);
+	const { data: sub, error } = useSWR<Sub>(subName ? `/subs/${subName}` : null);
 
 	useEffect(() => {
 		if (!sub) return;
@@ -59,6 +54,7 @@ export default function SubPage() {
 					'Content-Type': 'multipart/form-data',
 				},
 			});
+			mutate(`/subs/${subName}`);
 		} catch (err) {
 			console.log(err);
 		}

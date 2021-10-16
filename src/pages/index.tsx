@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -22,7 +24,7 @@ export default function Home() {
 			<Head>
 				<title>readit: the front page of the internet</title>
 			</Head>
-			<div className='flex container pt-4'>
+			<div className='flex container justify-center pt-4'>
 				{/* Posts feed */}
 				<div className='w-160'>
 					{posts?.map((p) => (
@@ -43,9 +45,11 @@ export default function Home() {
 								className='flex items-center px-4 py-2 text-xs border-b'
 							>
 								<Link href={`/r/${sub.name}`}>
-									<div className='rounded-full w-6 overflow-hidden mr-1 cursor-pointer'>
-										<img src={sub.imageUrn} alt='sub' />
-									</div>
+									<img
+										className='rounded-full w-6 mr-2 cursor-pointer'
+										src={sub.imageUrn}
+										alt='sub'
+									/>
 								</Link>
 								<Link href={`/r/${sub.name}`}>
 									<a className='font-bold hover:cursor-pointer'>

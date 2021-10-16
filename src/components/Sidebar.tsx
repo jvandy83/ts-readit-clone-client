@@ -30,10 +30,8 @@ const Sidebar = ({ sub }: { sub: Sub }) => {
 						Created {dayjs(sub.createdAt).format('D MMM YYYY')}
 					</p>
 					{authenticated && (
-						<Link href={`/r/${sub.name}`}>
-							<a href='' className='w-full blue button text-sm py-1'>
-								Create Post
-							</a>
+						<Link href={`/r/${sub.name}/submit`}>
+							<a className='w-full blue button text-sm py-1'>Create Post</a>
 						</Link>
 					)}
 				</div>

@@ -2,8 +2,10 @@ module.exports = {
 	purge: ['./src/**/*.tsx'],
 	darkMode: false, // or 'media' or 'class'
 	theme: {
+		container: {
+			center: true,
+		},
 		extend: {
-			container: false,
 			fontFamily: {
 				body: ['IBM Plex Sand'],
 			},
@@ -27,7 +29,10 @@ module.exports = {
 		},
 	},
 	variants: {
-		extend: {},
+		extend: {
+			backgroundColor: ['disabled'],
+			borderColor: ['disabled'],
+		},
 	},
 	plugins: [
 		function ({ addComponents }) {
