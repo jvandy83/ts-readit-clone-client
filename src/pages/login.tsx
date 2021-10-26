@@ -52,7 +52,8 @@ export default function Login() {
 			<div
 				className='h-screen bg-center bg-cover w-36'
 				style={{
-					backgroundImage: "url('./images/tiles.jpg')",
+					backgroundImage:
+						"url('https://images.unsplash.com/photo-1458682625221-3a45f8a844c7?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dGlsZXN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60')",
 				}}
 			></div>
 			<div className='flex flex-col justify-center pl-6'>

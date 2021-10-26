@@ -10,6 +10,7 @@ import useSWR from 'swr';
 
 import { Post, Sub } from '../../../types';
 import axios from 'axios';
+import { GetServerSideProps } from 'next';
 
 export default function Submit() {
 	// Local state
@@ -85,3 +86,16 @@ export default function Submit() {
 		</div>
 	);
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+	try {
+		const cookie = req.headers.cookie;
+		if (!cookie) throw new Error('Missing auth token cookie');
+
+		await axios.get('/auth/me', { headers: { cookie } });
+
+		return { props: {} };
+	} catch (err) {
+		res.writeHead(307, { Location: '/login' }).end();
+	}
+};
