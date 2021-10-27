@@ -21,6 +21,11 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+
 import classNames from 'classnames';
 
 export default function PostPage() {
@@ -122,11 +127,12 @@ export default function PostPage() {
 											className='w-6 mx-auto text-gray-400 rounded cursor-pointer hover:bg-gray-300 hover:text-red-500'
 											onClick={() => vote(1)}
 										>
-											<i
+											<FontAwesomeIcon
 												className={classNames('icon-arrow-up', {
 													'text-red-500': post.userVote === 1,
 												})}
-											></i>
+												icon={faArrowUp}
+											/>
 										</div>
 										<p className='text-xs font-bold'>{post.voteScore}</p>
 										{/* Downvote */}
@@ -134,11 +140,12 @@ export default function PostPage() {
 											className='w-6 mx-auto text-gray-400 rounded cursor-pointer hover:bg-gray-300 hover:text-blue-600'
 											onClick={() => vote(-1)}
 										>
-											<i
+											<FontAwesomeIcon
 												className={classNames('icon-arrow-down', {
 													'text-blue-600': post.userVote === -1,
 												})}
-											></i>
+												icon={faArrowDown}
+											/>
 										</div>
 									</div>
 									<div className='py-2 pr-2'>

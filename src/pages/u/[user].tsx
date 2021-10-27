@@ -9,6 +9,7 @@ export default function UserPosts() {
 	const { user } = router.query;
 
 	const { data: submissions } = useSwr(user ? `/users/${user}` : null);
+	console.log(submissions);
 
 	return (
 		<div className='container pt-4'>

@@ -10,6 +10,8 @@ import axios from 'axios';
 
 import '../styles/tailwind.css';
 
+import '@fortawesome/fontawesome-free/css/all.css';
+
 axios.defaults.baseURL = 'http://localhost:5000/api';
 axios.defaults.withCredentials = true;
 

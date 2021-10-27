@@ -2,8 +2,6 @@ import { Post } from '../types';
 
 import dayjs from 'dayjs';
 
-import { mutate } from 'swr';
-
 import Link from 'next/link';
 
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -11,12 +9,22 @@ dayjs.extend(relativeTime);
 
 import classNames from 'classnames';
 
+// import { mutate } from 'swr';
+
 import axios from 'axios';
 
 import ActionButton from '../components/ActionButton';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { useAuthState } from '../context/auth';
+import { useRouter } from 'next/router';
+
 interface PostcardProps {
 	post: Post;
+	mutate?: Function;
 }
 
 export default function PostCard({
@@ -33,32 +41,42 @@ export default function PostCard({
 		url,
 		username,
 	},
+	mutate,
 }: PostcardProps) {
+	const { authenticated } = useAuthState();
+
+	const router = useRouter();
+
 	const vote = async (value: number) => {
+		if (!authenticated) router.push('/login');
+
+		if (value === userVote) value = 0;
+
 		try {
 			const res = await axios.post('/misc/vote', {
 				identifier,
 				slug,
 				value,
 			});
-			mutate('/posts');
+			if (mutate) mutate();
 		} catch (err) {
 			console.log(err);
 		}
 	};
 	return (
-		<div key={identifier} className='flex mb-4 bg-white rounded'>
+		<div className='flex mb-4 bg-white rounded' id={identifier}>
 			{/* vote section */}
 			<div className='w-10 py-3 text-center bg-gray-200 rounded-l'>
 				<div
 					className='w-6 mx-auto text-gray-400 rounded cursor-pointer hover:bg-gray-300 hover:text-red-500'
 					onClick={() => vote(1)}
 				>
-					<i
+					<FontAwesomeIcon
 						className={classNames('icon-arrow-up', {
 							'text-red-500': userVote === 1,
 						})}
-					></i>
+						icon={faArrowUp}
+					/>
 				</div>
 				<p className='text-xs font-bold'>{voteScore}</p>
 				{/* Downvote */}
@@ -66,11 +84,12 @@ export default function PostCard({
 					className='w-6 mx-auto text-gray-400 rounded cursor-pointer hover:bg-gray-300 hover:text-blue-600'
 					onClick={() => vote(-1)}
 				>
-					<i
+					<FontAwesomeIcon
 						className={classNames('icon-arrow-down', {
 							'text-blue-600': userVote === -1,
 						})}
-					></i>
+						icon={faArrowDown}
+					/>
 				</div>
 			</div>
 			{/* Post data section */}

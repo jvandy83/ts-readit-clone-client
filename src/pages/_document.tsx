@@ -17,10 +17,6 @@ class MyDocument extends Document {
 						crossOrigin='anonymous'
 						referrerPolicy='no-referrer'
 					/>
-					<link
-						rel='stylesheet'
-						href='https://i.icomoon.io/public/temp/3e0f9abd74/UntitledProject/style.css'
-					/>
 				</Head>
 				<body className='font-body' style={{ backgroundColor: '#DAE0E6' }}>
 					<Main />
